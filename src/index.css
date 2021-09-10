@@ -60,10 +60,10 @@ input[type="text"]:not(.browser-default):focus:not([readonly]) + label {
   text-align: center;
   font-size: 1.4rem;
 }
-.temperatura {
+.edad {
   font-size: 4rem !important;
 }
-.temperatura span {
+.edad span {
   font-size: 2rem !important;
   vertical-align: super;
 }

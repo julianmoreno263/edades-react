@@ -56,7 +56,7 @@ const Formulario = ({ busqueda, guardarBusqueda, guardarConsultar }) => {
           value={pais}
           onChange={handleChange}
         />
-        <label htmlFor="País">País: </label>
+        <label htmlFor="País">Código del país: </label>
       </div>
 
       <div className="input-field col s12">

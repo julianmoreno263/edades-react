@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import Header from "./components/Header";
 import Formulario from "./components/Formulario";
+import Edad from "./components/Edad";
 
 function App() {
   //state principal
@@ -24,6 +25,9 @@ function App() {
         const url = `https://api.agify.io?name=${nombre}&country_id=${pais}`;
         const respuesta = await fetch(url);
         const resultado = await respuesta.json();
+
+        console.log(resultado);
+
         guardarResultado(resultado);
       }
     };
@@ -45,7 +49,9 @@ function App() {
                 guardarConsultar={guardarConsultar}
               />
             </div>
-            <div className="col m6 s12">2</div>
+            <div className="col m6 s12">
+              <Edad resultado={resultado} />
+            </div>
           </div>
         </div>
       </div>
