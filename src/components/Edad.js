@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Edad = ({ resultado }) => {
   //extraemos los valores de la respuesta de la consulta
@@ -14,6 +15,12 @@ const Edad = ({ resultado }) => {
       </div>
     </div>
   );
+};
+
+//documentacion de propTypes
+
+Edad.propTypes = {
+  resultado: PropTypes.object.isRequired,
 };
 
 export default Edad;

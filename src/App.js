@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import Header from "./components/Header";
 import Formulario from "./components/Formulario";
 import Edad from "./components/Edad";
+import Error from "./components/Error";
 
 function App() {
   //state principal
@@ -14,6 +15,9 @@ function App() {
 
   //state para guadar el resultado de la consulta a la API
   const [resultado, guardarResultado] = useState({});
+
+  //state para manejar el error
+  const [error, guardarError] = useState(false);
 
   //extraemos nombre y pais del state
   const { nombre, pais } = busqueda;
@@ -29,11 +33,30 @@ function App() {
         console.log(resultado);
 
         guardarResultado(resultado);
+
+        /*regresamos el state consultar a false para que permitarealizar otra consulta dinamicamente sin recargar la app*/
+        guardarConsultar(false);
+
+        //detecta si hubo resultados correctos en la consulta
+        if (resultado.count === 0) {
+          guardarError(true);
+        } else {
+          guardarError(false);
+        }
       }
     };
 
     consultarAPI();
   }, [consultar]);
+
+  let componente;
+  if (error) {
+    componente = (
+      <Error mensaje="Sin resultados,verifica los datos ingresados" />
+    );
+  } else {
+    componente = <Edad resultado={resultado} />;
+  }
 
   return (
     <Fragment>
@@ -49,9 +72,7 @@ function App() {
                 guardarConsultar={guardarConsultar}
               />
             </div>
-            <div className="col m6 s12">
-              <Edad resultado={resultado} />
-            </div>
+            <div className="col m6 s12">{componente}</div>
           </div>
         </div>
       </div>
